@@ -9,8 +9,7 @@ import { format, eachDayOfInterval, parseISO } from "date-fns";
 import { ColorPicker } from "@/components/ColorPicker";
 import { DEFAULT_THEME_COLOR } from "@/constants/colors";
 
-import { SAMPLE_SCHEDULE, SAMPLE_PACKING, SAMPLE_MEMBERS, SAMPLE_SPOTS } from "@/constants/sampleData";
-import { Sparkles, Map } from "lucide-react";
+import { Map } from "lucide-react";
 
 export default function Home() {
   const { trips, addTrip, deleteTrip, updateTrip, selectTrip } = useTrips();
@@ -48,40 +47,7 @@ export default function Home() {
     setIsAdding(true);
   };
 
-  const handleCreateTestTrip = () => {
-    const tripId = Date.now().toString();
-    const newTrip = {
-      id: tripId,
-      title: "ヨーロッパ旅行 (Test)",
-      destinations: ["London", "Paris"],
-      startDate: "2026-02-27",
-      endDate: "2026-03-08",
-      themeColor: "#e07a5f"
-    };
 
-    const id = addTrip({
-      title: newTrip.title,
-      destinations: newTrip.destinations,
-      startDate: newTrip.startDate,
-      endDate: newTrip.endDate,
-      themeColor: newTrip.themeColor
-    });
-
-    if (typeof window !== "undefined") {
-      localStorage.setItem(`trip_${id}_my-itinerary`, JSON.stringify(SAMPLE_SCHEDULE));
-      localStorage.setItem(`trip_${id}_packing-list`, JSON.stringify(SAMPLE_PACKING));
-      localStorage.setItem(`trip_${id}_trip-members`, JSON.stringify(SAMPLE_MEMBERS));
-
-      // For Spots, it is trip-specific now.
-      localStorage.setItem(`trip_${id}_saved-spots`, JSON.stringify(SAMPLE_SPOTS));
-
-      // Forces a immediate storage check if needed (though addTrip should handle state)
-      setTimeout(() => {
-        selectTrip(id);
-        router.push("/schedule");
-      }, 100);
-    }
-  };
 
   const handleSaveTrip = () => {
     if (!title) return;
@@ -156,11 +122,7 @@ export default function Home() {
           <h1 className="font-serif text-3xl text-gray-900 mb-2">My Trips</h1>
           <p className="text-gray-500 text-sm">以前の旅行とこれからの計画</p>
         </div>
-        {/* Test Trip Button */}
-        <button onClick={handleCreateTestTrip} className="flex items-center gap-1 text-xs font-bold text-gray-400 hover:text-gray-900 transition-colors bg-white px-3 py-1.5 rounded-full border border-gray-200">
-          <Sparkles size={12} />
-          テスト旅行作成
-        </button>
+
       </div>
 
 
