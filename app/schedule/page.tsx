@@ -220,9 +220,9 @@ export default function SchedulePage() {
             {/* Header */}
             <div className="sticky top-0 z-20 bg-white/80 backdrop-blur-md border-b border-gray-100 pt-12 pb-4 px-6">
                 <div className="flex items-center gap-2 mb-4">
-                    <Link href="/" className="flex items-center gap-1 p-2 -ml-2 text-gray-400 hover:text-gray-900 transition-colors group">
+                    <Link href="/" className="flex items-center gap-1 p-2 -ml-2 text-gray-400 hover:text-gray-900 transition-colors">
                         <ChevronLeft size={24} />
-                        <span className="text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">Home</span>
+                        <span className="text-sm font-medium">Homeに戻る</span>
                     </Link>
                     <h1 className="font-serif text-3xl text-gray-900">Itinerary</h1>
                 </div>
